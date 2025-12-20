@@ -1,5 +1,4 @@
-// webpack.config.cjs
-const path = require("path");
+﻿const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -13,18 +12,15 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    // 这里要把 .ts / .tsx 加进去
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   module: {
     rules: [
-      // JS / TS / JSX / TSX
       {
         test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: "babel-loader",
       },
-      // CSS + Tailwind v4
       {
         test: /\.css$/,
         use: [
@@ -38,7 +34,13 @@ module.exports = {
           "postcss-loader",
         ],
       },
-      // 贴图资源
+      {
+        test: /\.(glb|gltf)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/models/[name].[contenthash][ext]",
+        },
+      },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
         type: "asset",
