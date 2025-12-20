@@ -2,14 +2,16 @@ import { useEffect } from "react";
 import * as THREE from "three";
 import { useTexture } from "@react-three/drei";
 
-export default function Ground() {
-  const textureUrls: [string, string, string] = [
-    "/texture/groundfloor/rock_embedded_floor_diff_1k.jpg",
-    "/texture/groundfloor/rock_embedded_floor_nor_gl_1k.png",
-    "/texture/groundfloor/rock_embedded_floor_rough_1k.png",
-  ];
+import groundDiffuse from "../../public/texture/groundfloor/rock_embedded_floor_diff_1k.jpg";
+import groundNormal from "../../public/texture/groundfloor/rock_embedded_floor_nor_gl_1k.png";
+import groundRoughness from "../../public/texture/groundfloor/rock_embedded_floor_rough_1k.png";
 
-  const [map, normalMap, roughnessMap] = useTexture(textureUrls);
+export default function Ground() {
+  const [map, normalMap, roughnessMap] = useTexture([
+    groundDiffuse,
+    groundNormal,
+    groundRoughness,
+  ]);
 
   useEffect(() => {
     [map, normalMap, roughnessMap].forEach((tex, idx) => {
