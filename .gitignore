@@ -58,5 +58,6 @@ tsconfig.tsbuildinfo
 test/
 *.md
 !README.md
-texture/
-models/
+*.glb
+!Armature.001.glb
+!Armature.002.glb
