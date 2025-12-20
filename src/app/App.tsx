@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { Scroll, ScrollControls } from "@react-three/drei";
+import { Scroll, ScrollControls, useProgress } from "@react-three/drei";
 
 import { SECTIONS, SectionConfig } from "../config/sections";
 import {
@@ -79,6 +79,7 @@ export default function App() {
 
   return (
     <div className="relative h-screen w-screen bg-slate-950">
+      <LoadingOverlay />
       <Canvas
         shadows={{ type: THREE.PCFSoftShadowMap }}
         camera={{ position: [0, 1.5, 3.5], fov: 55, near: 0.1, far: 100 }}
@@ -108,6 +109,23 @@ export default function App() {
           />
         </ScrollControls>
       </Canvas>
+    </div>
+  );
+}
+
+function LoadingOverlay() {
+  const { active, progress } = useProgress();
+
+  if (!active) return null;
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-slate-950/70 text-white">
+      <div className="flex flex-col items-center gap-3">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-slate-200/20 border-t-slate-200" />
+        <div className="text-xs font-semibold uppercase tracking-[0.25em]">
+          Loading {Math.round(progress)}%
+        </div>
+      </div>
     </div>
   );
 }
