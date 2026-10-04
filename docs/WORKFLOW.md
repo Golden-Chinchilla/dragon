@@ -25,9 +25,9 @@
 执行：
 
 ```sh
-npm run assets
-npm run assets:exploration
-npm run verify:assets
+yarn assets
+yarn assets:exploration
+yarn verify:assets
 ```
 
 - 人物导出为 public/assets/traveler.glb，保留对象转轴层级。
@@ -41,8 +41,8 @@ npm run verify:assets
 ## 4. 接入网页
 
 ```sh
-npm install
-npm run dev -- --port 5173
+yarn install --immutable
+yarn dev --port 5173
 ```
 
 - src/world/assets.js：加载模型与配置，处理加载失败。
@@ -59,10 +59,10 @@ npm run dev -- --port 5173
 代码检查：
 
 ```sh
-npm run lint
-npm test
-npm run verify:assets
-npm run build
+yarn lint
+yarn test
+yarn verify:assets
+yarn build
 ```
 
 涉及资产生成时额外运行 Python 语法检查与 Blender 导出。必须等资产完成后再做最终 build，否则生产目录可能缺少新资产。

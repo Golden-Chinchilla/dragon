@@ -20,7 +20,7 @@
 - Blender 提取脚本输出 EXPLORATION_ASSETS_COMPLETE：旅舍 6 个网格，树木 2 个网格。
 - GLB 结构、嵌入纹理及原资产转轴检查通过，详见 asset-verification.json。
 - 8 项测试通过：导航绕障碍、非法目标、不可达目标、未知区域寻路限制，以及探索单调性、沿途连续采样、地图边界 / 重复揭露、保存版本与损坏数据拒绝。
-- npm run lint 与 npm run build 通过；构建仍有 Three.js 包大于 500 KB 的体积提示。
+- Yarn 4.9.1 迁移完成：yarn install --immutable、yarn lint、8 项 yarn test、yarn verify:assets 与 yarn build 均通过；构建仍有 Three.js 包大于 500 KB 的体积提示。Cloudflare 配置与重新部署尚未修改或验证。
 - 实际浏览器初始截图只显露提灯人物周围，探索约 3.1%；向前移动后主屋与水井从雾中出现，比例增加至 4.4% 并继续增长。
 - 浏览器暂停后探索 8.7%、位置 -8.8 / 0.1 保持不变；旋转相机未揭露新地图；刷新后恢复相同探索比例与位置。
 - 沿岔路实际抵达林间旅舍，探索增长至 13.7%，点击旅舍显示正确介绍。回到出生点仍为 13.7%；重新探索恢复出生点和初始 3.1%。

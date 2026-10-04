@@ -20,5 +20,6 @@
   },
   "dependencies": {
     "three": "^0.186.1"
-  }
+  },
+  "packageManager": "yarn@4.9.1"
 }

@@ -4,9 +4,11 @@ Blender 可编辑资产驱动的 Three.js 2.5D 世界。正交斜俯视下可见
 
 ## 启动
 
+使用 Node.js 22.16 或更新的兼容版本，通过 Corepack 固定 Yarn 4.9.1。首次使用执行 `corepack enable yarn`。
+
 ```sh
-npm install
-npm run dev -- --port 5173
+yarn install --immutable
+yarn dev --port 5173
 ```
 
 打开 http://127.0.0.1:5173/ 。GLB 资产已包含在 public/assets 中，启动网页无需安装 Blender。
@@ -16,9 +18,9 @@ npm run dev -- --port 5173
 源文件：`assets/blender/courtyard.blend`。Blender 中保留独立瓦片、石板、窗框、树冠和人物四肢转轴。
 
 ```sh
-npm run assets
-npm run assets:exploration
-npm run verify:assets
+yarn assets
+yarn assets:exploration
+yarn verify:assets
 ```
 
 `assets` 使用 macOS /Applications/Blender.app 的 Blender 5.2，执行 scripts/blender/build_courtyard.py，从脚本重新生成源文件和网页模型，会覆盖当前生成资产。如直接手工修改 .blend，先将需要保留的设计同步到脚本再重新生成。
@@ -53,10 +55,10 @@ npm run verify:assets
 - scripts/verify_assets.py：GLB、纹理与转轴完整性检查。
 
 ```sh
-npm run lint
-npm test
-npm run verify:assets
-npm run build
+yarn lint
+yarn test
+yarn verify:assets
+yarn build
 ```
 
 ## 当前交付与限制
@@ -71,3 +73,7 @@ npm run build
 - [沉浸式地图与战争迷雾方案](docs/EXPLORATION_DESIGN.md)
 
 首版夜间战争迷雾、跟随镜头与探索存储已实现。迷雾按地面距离揭露，尚未模拟墙壁阻断视线或敌人侦察。区块流式加载仍未实现。
+
+## Cloudflare Pages
+
+构建命令：`yarn build`；输出目录：`dist`；根目录：项目根目录。提交 `yarn.lock`、`.yarnrc.yml` 和 `package.json`，Cloudflare 使用固定的 Yarn 版本安装依赖。模型已经导出并提交，云端构建无需 Blender。
