@@ -1,0 +1,26 @@
+{
+  "courtyard": {
+    "bytes": 6292228,
+    "meshes": 10,
+    "textures": 6,
+    "vertices": 126474
+  },
+  "traveler": {
+    "bytes": 546752,
+    "meshes": 14,
+    "textures": 2,
+    "vertices": 791
+  },
+  "forest-lodge": {
+    "bytes": 2322000,
+    "meshes": 6,
+    "textures": 4,
+    "vertices": 34212
+  },
+  "forest-tree": {
+    "bytes": 588084,
+    "meshes": 2,
+    "textures": 2,
+    "vertices": 1189
+  }
+}

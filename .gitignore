@@ -1,63 +1,6 @@
-# ============================
-# Node / Yarn
-# ============================
 node_modules/
-yarn-error.log
-yarn-debug.log*
-.pnp/
-.pnp.js
-
-# ============================
-# Build output
-# ============================
 dist/
-build/
-out/
-coverage/
+.DS_Store
 
-# ============================
-# Temp files
-# ============================
-*.log
-*.tmp
-*.temp
-*.DS_Store
-Thumbs.db
-
-# VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/extensions.json
-
-# ============================
-# Environment / Secrets
-# ============================
-.env
-.env.*
-!.env.example
-
-# ============================
-# Webpack / Cache
-# ============================
-.cache/
-webpack-stats.json
-
-# ============================
-# TypeScript
-# ============================
-*.tsbuildinfo
-tsconfig.tsbuildinfo
-
-# ============================
-# Misc
-# ============================
-*.local
-.idea/
-*.swp
-*.swo
-test/
-*.md
-!README.md
-*.glb
-!Armature.001.glb
-!Armature.002.glb
+__pycache__/
+*.blend1
