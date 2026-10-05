@@ -1,5 +1,5 @@
 {
-  "name": "hollow-world",
+  "name": "odonata",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,9 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "node --test",
-    "assets": "\"/Applications/Blender.app/Contents/MacOS/Blender\" --background --python-exit-code 1 --python scripts/blender/build_courtyard.py",
-    "verify:assets": "python3 scripts/verify_assets.py",
-    "assets:exploration": "\"/Applications/Blender.app/Contents/MacOS/Blender\" --background --python-exit-code 1 --python scripts/blender/export_exploration.py"
+    "assets": "\"/Applications/Blender.app/Contents/MacOS/Blender\" --background --python-exit-code 1 --python scripts/blender/build_dragonfly.py",
+    "verify:assets": "python3 scripts/verify_assets.py"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

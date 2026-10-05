@@ -1019,18 +1019,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hollow-world@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "hollow-world@workspace:."
-  dependencies:
-    "@eslint/js": "npm:^9.36.0"
-    eslint: "npm:^9.36.0"
-    globals: "npm:^16.4.0"
-    three: "npm:^0.186.1"
-    vite: "npm:^7.1.0"
-  languageName: unknown
-  linkType: soft
-
 "ignore@npm:^5.2.0":
   version: 5.3.2
   resolution: "ignore@npm:5.3.2"
@@ -1230,6 +1218,18 @@ __metadata:
   checksum: 10c0/980d89257f9587f3e1f77877ddbf905d6aa3b738ec33e49a4fa1a059a0dd82eb28063982b150654a7ae9de386f2ead60e56172db7d37cf56de545f7392a2a26a
   languageName: node
   linkType: hard
+
+"odonata@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "odonata@workspace:."
+  dependencies:
+    "@eslint/js": "npm:^9.36.0"
+    eslint: "npm:^9.36.0"
+    globals: "npm:^16.4.0"
+    three: "npm:^0.186.1"
+    vite: "npm:^7.1.0"
+  languageName: unknown
+  linkType: soft
 
 "optionator@npm:^0.9.3":
   version: 0.9.4

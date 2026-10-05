@@ -1,6 +1,143 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#0b1829"><title>雾谷 · 夜行</title></head><body>
-<canvas id="world" aria-label="雾谷：夜间可探索的地图"></canvas><div id="loading" role="status">夜色中的雾谷…</div><div class="grain"></div><div class="vignette"></div>
-<header><a class="brand" href="./"><span class="mark">☾</span><span>HOLLOW<span class="brand-sub">雾谷 · 夜行</span></span></a><div class="edition">月夜 <span class="divider">/</span> 23:17</div></header>
-<div class="exploration-hud"><span class="hud-label">已探索</span><strong id="explored">0.0%</strong><small id="save-state">探索随行走保存</small></div>
-<aside id="place" aria-live="polite"><span class="place-icon">✧</span><div><p id="place-title">夜色中的雾谷</p><span id="place-note">沿着石径向前，寻找雾里的下一盏灯。</span></div></aside>
-<footer><div class="coordinates">THE NIGHT JOURNEY<small>坐标 <span id="coordinates">0 / 6.5</span></small></div><div class="controls"><span>方向键 / WASD <b>行走</b></span><button id="advance" disabled>沿路向前 ↗</button><button id="angle" disabled title="切换观察角度" aria-label="切换观察角度">◇</button><button id="reset" disabled title="回到出生点，保留探索" aria-label="回到出生点">⌂</button><button id="pause" disabled title="暂停动画" aria-label="暂停动画">Ⅱ</button><button id="restart" disabled title="清空进度，重新探索">重新探索</button></div></footer><script type="module" src="/src/main.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#14181b" />
+    <meta
+      name="description"
+      content="ODONATA — 一只可近距离观察的精密机械蜻蜓。探索四翼、开放传动与分节骨架。"
+    />
+    <title>ODONATA — 机械蜻蜓</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%2314181b'/%3E%3Cpath d='M20 8v24M7 12l26 12M33 12L7 24' stroke='%23d4b68b' stroke-width='2'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div id="app">
+      <canvas
+        id="specimen"
+        aria-label="机械蜻蜓三维模型，拖动旋转，滚轮缩放，方向键旋转，加减键缩放"
+        tabindex="0"
+      ></canvas>
+      <div class="vignette" aria-hidden="true"></div>
+      <header class="header">
+        <a href="./" class="brand" aria-label="ODONATA 首页"
+          ><svg viewBox="0 0 40 40" aria-hidden="true">
+            <path d="M20 5v30M4 10l32 14M36 10L4 24M20 8l-3-3m3 3 3-3" /></svg
+          ><span>ODONATA<span class="brand-note">机械生命研究室</span></span></a
+        >
+        <div class="header-right">
+          <span>FORM / MOTION / PRECISION</span
+          ><span class="edition">NO. 001</span>
+        </div>
+      </header>
+      <main class="intro">
+        <div class="eyebrow">
+          <span class="dash"></span> MECHANICAL LIFE · 01
+        </div>
+        <h1>
+          机械蜻蜓<span>THE CLOCKWORK<br />DRAGONFLY</span>
+        </h1>
+      </main>
+      <aside class="detail" aria-label="部件介绍">
+        <div class="detail-top">
+          <span id="detail-index">01 / 04</span
+          ><span class="small-cross">＋</span>
+        </div>
+        <h2 id="detail-title">精密，共生。</h2>
+        <p id="detail-copy">
+          从复眼的微型透镜，到翼膜之间的交叉筋骨。旋转、靠近，观察每一处连接。
+        </p>
+        <dl>
+          <div>
+            <dt>独立源零件</dt>
+            <dd id="part-count">—</dd>
+          </div>
+          <div>
+            <dt>翼根组件</dt>
+            <dd>04</dd>
+          </div>
+          <div>
+            <dt>腹部关节</dt>
+            <dd>10</dd>
+          </div>
+        </dl>
+        <div class="detail-foot">
+          <span class="status-dot"></span
+          ><span id="motion-status">低速运转</span
+          ><span class="scale-label">STUDY MODEL</span>
+        </div>
+      </aside>
+      <div id="hotspots" aria-label="模型观察点">
+        <button class="hotspot" data-focus="head" aria-label="观察复眼">
+          <span>01</span><em>复眼</em>
+        </button>
+        <button class="hotspot" data-focus="thorax" aria-label="观察传动机构">
+          <span>02</span><em>传动</em>
+        </button>
+        <button class="hotspot" data-focus="wing" aria-label="观察翼脉">
+          <span>03</span><em>翼脉</em>
+        </button>
+      </div>
+      <div id="loading" role="status">
+        <span class="loader-ring"></span
+        ><span id="load-message">正在装配机械生命…</span
+        ><button id="retry" hidden>重新加载</button>
+      </div>
+      <div class="view-hint">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 3v5m0 8v5M3 12h5m8 0h5M6 6l3 3m6 6 3 3M6 18l3-3m6-6 3-3"
+          /></svg
+        ><span>拖动旋转<span class="hint-divider">/</span>滚轮靠近</span>
+      </div>
+      <footer class="footer">
+        <div class="view-controls" role="group" aria-label="观察视角">
+          <span class="control-label">视角</span
+          ><button
+            data-view="overview"
+            class="active"
+            aria-pressed="true"
+            disabled
+          >
+            全貌</button
+          ><button data-view="thorax" aria-pressed="false" disabled>传动</button
+          ><button data-view="wing" aria-pressed="false" disabled>翼脉</button
+          ><button data-view="top" aria-pressed="false" disabled>俯视</button>
+        </div>
+        <div class="assembly-control">
+          <label for="explode">结构展开</label
+          ><input
+            id="explode"
+            type="range"
+            min="0"
+            max="100"
+            value="0"
+            disabled
+          /><output id="explode-value" for="explode">0%</output>
+        </div>
+        <div class="motion-controls">
+          <button
+            id="rotate"
+            aria-label="自动旋转"
+            aria-pressed="false"
+            title="自动旋转"
+            disabled
+          >
+            ↻</button
+          ><button id="pause" aria-pressed="false" disabled>
+            <span id="pause-icon">Ⅱ</span><span id="pause-label">暂停运转</span>
+          </button>
+        </div>
+      </footer>
+      <div class="colophon">
+        <span>ODONATA / ENGINEERED NATURE</span
+        ><span>交互式机械标本 <b>·</b> 2026</span>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

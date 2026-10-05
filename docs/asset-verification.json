@@ -1,26 +1,19 @@
 {
-  "courtyard": {
-    "bytes": 6292228,
-    "meshes": 10,
-    "textures": 6,
-    "vertices": 126474
+  "revision": 2,
+  "sourceParts": 5506,
+  "features": {
+    "fasteners": 217,
+    "gearTeeth": 138,
+    "bearings": 57,
+    "opticalCells": 566,
+    "wingCellEdges": 2406
   },
-  "traveler": {
-    "bytes": 546752,
-    "meshes": 14,
-    "textures": 2,
-    "vertices": 791
-  },
-  "forest-lodge": {
-    "bytes": 2322000,
-    "meshes": 6,
-    "textures": 4,
-    "vertices": 34212
-  },
-  "forest-tree": {
-    "bytes": 588084,
-    "meshes": 2,
-    "textures": 2,
-    "vertices": 1189
-  }
+  "status": "passed",
+  "glbBytes": 8427624,
+  "meshes": 147,
+  "triangles": 375572,
+  "materials": 9,
+  "verifiedPivots": 30,
+  "textures": 0,
+  "notes": "Geometry and PBR constants, no baked textures. Rigid assemblies, no bone skinning or physical drivetrain simulation."
 }
