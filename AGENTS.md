@@ -43,8 +43,8 @@ Showing the user:
   `rive.yaml`. Run every `rive` command as `rive tvmenu` or from inside it.
 - Text is markup bound to the `Menu` view model; `menu.luau` owns the data,
   keyboard and pointer handling, and draws the background and 3D cards into
-  two GPU canvases. The print function lives in both `bg.wgsl` and
-  `card.wgsl`; `tools/print_snippet.wgsl` is the copy to edit and sync from.
+  two GPU canvases. `print.wgsl` renders the ten prints to textures on the
+  first frame; `bg.wgsl` (quarter resolution) and `card.wgsl` sample them.
 - Each full-screen script sits in an absolutely positioned `LayoutComponent`;
   the artboard is a flex row, so without `absolute` the layers split the
   width. Luau is strict: assign `GPUPipeline.new(...)` to a local before
