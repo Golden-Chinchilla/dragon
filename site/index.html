@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TV Menu</title>
+  <meta name="description" content="A TV home menu built with the Rive CLI: 3D cards, shader prints, keyboard and mouse navigation.">
+  <style>
+    html, body { margin: 0; height: 100%; background: #07090c; overflow: hidden; }
+    #stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    canvas { width: 100%; height: 100%; outline: none; display: block; }
+    #status { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+              color: #8e97a2; font: 12px/1.6 ui-monospace, Menlo, monospace; letter-spacing: 0.16em;
+              text-transform: uppercase; pointer-events: none; }
+    #status[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <div id="stage"><canvas id="rive" tabindex="0"></canvas></div>
+  <div id="status">Loading</div>
+  <script src="https://cdn.jsdelivr.net/npm/@rive-app/webgl2@2.x.x/rive.js"></script>
+  <script>
+    (function () {
+      var canvas = document.getElementById('rive');
+      var status = document.getElementById('status');
+      var r;
+      function fail(msg) { status.hidden = false; status.textContent = msg; }
+      if (typeof rive === 'undefined') { fail('Runtime failed to load'); return; }
+
+      var file = new rive.RiveFile({ src: 'tvmenu.riv', enableGPUCanvas: true });
+      file.init().then(function () {
+        r = new rive.Rive({
+          riveFile: file,
+          canvas: canvas,
+          autoplay: true,
+          autoBind: true,
+          enableGPUCanvas: true,
+          enableMultiTouch: true,
+          stateMachines: 'Main',
+          layout: new rive.Layout({ fit: rive.Fit.Contain, alignment: rive.Alignment.Center }),
+          focusOptions: { allowFocusInterrupt: true },
+          onLoad: function () {
+            status.hidden = true;
+            r.resizeDrawingSurfaceToCanvas();
+            if (!document.activeElement || document.activeElement === document.body) {
+              canvas.focus({ preventScroll: true });
+            }
+          },
+          onLoadError: function () { fail('Could not load the scene'); },
+        });
+      }).catch(function () { fail('Could not load the scene'); });
+
+      function resize() { if (r) { r.resizeDrawingSurfaceToCanvas(); } }
+      if (window.ResizeObserver) { new ResizeObserver(resize).observe(canvas); }
+      else { window.addEventListener('resize', resize); }
+      // a click anywhere hands the keys to the scene
+      document.addEventListener('pointerdown', function () {
+        if (document.activeElement !== canvas) { canvas.focus({ preventScroll: true }); }
+      });
+    })();
+  </script>
+</body>
+</html>

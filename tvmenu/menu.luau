@@ -231,9 +231,10 @@ function init(self: Menu, context: Context): boolean
         ubos = { { slot = 0, buffer = bgUbo } },
     })
 
-    -- cards: one box, drawn once per card with a dynamic uniform offset
-    local features = context:features()
-    self.slot = math.max(256, features.minUniformBufferOffsetAlignment)
+    -- cards: one box, drawn once per card with a dynamic uniform offset.
+    -- 256 is the largest alignment WebGPU allows, so it is safe everywhere;
+    -- context:features() cannot be read in init on the web.
+    self.slot = 256
     local layout = GPUBindGroupLayout.new({ shader = cardShader, groupIndex = 0, dynamicUBOs = { 0 } })
     local cardPipeline = GPUPipeline.new({
         vertex = cardShader,
@@ -458,8 +459,17 @@ function draw(self: Menu, renderer: Renderer)
     local vbuf, ibuf = self.vbuf, self.ibuf
     if bgCanvas == nil or cardCanvas == nil or bgPipeline == nil or cardPipeline == nil
         or bgUbo == nil or cardUbo == nil or bgBind == nil or cardBind == nil
-        or vbuf == nil or ibuf == nil or bgCanvas.width == 0 then
+        or vbuf == nil or ibuf == nil then
         return
+    end
+    -- on the web the first resize can land before init made the canvases
+    if bgCanvas.width == 0 or cardCanvas.width == 0 then
+        local pw, ph = math.floor(self.size.x * self.scale), math.floor(self.size.y * self.scale)
+        if pw <= 0 or ph <= 0 then
+            return
+        end
+        bgCanvas:resize(pw, ph)
+        cardCanvas:resize(pw, ph)
     end
     local w = if self.size.x > 0 then self.size.x else 1280
     local h = if self.size.y > 0 then self.size.y else 720

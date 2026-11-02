@@ -51,3 +51,7 @@ Showing the user:
   storing it in an optional field, and annotate empty tables (`{ number }`).
 - Check appearance with `--screenshot --advance=30`; interaction with
   `--key=right:down` and `--pointer=click@x,y`.
+- `site/` is what Cloudflare Pages serves (no build command, output dir
+  `site`): `index.html` loads `tvmenu.riv` with `@rive-app/webgl2`. After a
+  change, republish with `rive tvmenu --publish` (signed; needs `rive login`)
+  and copy `tvmenu/build/tvmenu.riv` to `site/tvmenu.riv`.

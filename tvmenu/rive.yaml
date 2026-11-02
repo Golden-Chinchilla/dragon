@@ -5,3 +5,9 @@ artboard:
 logs:
   file: build/rive.log
   problems: build/problems.log
+push:
+  projectId: 1779063
+  fileId: 2699914
+pages:
+  teamId: 1444107
+  name: "tvmenu"
