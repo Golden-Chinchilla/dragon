@@ -1,46 +1,83 @@
-# ODONATA · 机械蜻蜓
+# Rive 实验
 
-从零制作的精密机械蜻蜓，以及独立的 Three.js 交互式展示。旧庭院、地图、人物和战争迷雾资源已清理。
+两个 Rive CLI 项目：根目录是水母（下文），[tvmenu/](tvmenu/README.md) 是复刻的电视首页。根项目的 `rive.yaml` 排除了 `tvmenu`，两边各自 `rive <dir>` 预览。
 
-第二版按精密机芯方向重做：层叠传动与轴承桥板、连续铜线绕组、密排六角光学单元、不规则多边形翼脉、分片薄壳腹甲，以及带波纹护套和分节抓钩的机械足。Blender 源文件保留独立零件，网页 GLB 按材质和活动组件合并。
+# Jellyfish
 
-当前资产包含 5,506 个源网格零件，导出为 147 个网格、375,572 个三角形，GLB 约 8.43 MB。精度来自装配层级、细小间隙和加工轮廓；零件数量包括复眼单元与翼脉分段。
+一只深海水母，用 Rive CLI 从 RML、Luau 和 WGSL 构建。鼠标悬停时它会缓慢靠近，点击时收缩并逃开。
 
-## 运行
+## 做法
 
-需要 Node.js 22.16+，包管理器固定 Yarn 4.9.1。
+画面从上到下分六层，和 Philippe Roy 锦鲤池的思路一致：矢量分层画出主体，骨骼蒙皮做连续变形，着色器做水体，最后一层调色。
 
-```sh
-corepack enable yarn
-yarn install --immutable
-yarn dev --port 5173
+| 层 | 内容 | 实现 |
+|---|---|---|
+| Grade | 暗角、顶部薄雾、每帧刷新的胶片颗粒 | `grade.luau` + `grade.wgsl`，全屏三角形，srcOver 叠在最上面 |
+| Input | 指针 → view model 数值 | `drift.luau` |
+| Beads | 沿触手下行的发光珠 | 每根触手一颗，`FollowPathConstraint` 的 `distance` 打关键帧 |
+| Jelly | 伞盖 9 层矢量，两根骨骼蒙皮 | 伞缘光、辐管、高光、内脏、内膜、本体、边缘增厚、底部阴影、外发光 |
+|       | 13 根触手 + 4 条口腕 | 每根一条锥形闭合路径，蒙皮到 4–5 节骨链，骨骼旋转打关键帧 |
+| Snow | 海雪和气泡 | `snow.luau`，Renderer 直接画 |
+| Water | 深度渐变、漂移雾、斜向光束、焦散 | `water.luau` + `water.wgsl` |
+
+伞盖呼吸不是缩放整组，而是两根骨骼（Apex、Hem）各自打 scale/y 关键帧，顶点按高度在两者之间混权重，所以伞缘收缩得比顶部多、还晚一拍。
+
+## 文件
+
+| 文件 | 作用 |
+|---|---|
+| `tools/gen_scene.py` | 生成器。几何、权重打包、骨链、关键帧波形都在这里，改参数后重新生成 |
+| `scene.rml` | 生成产物，不要手改 |
+| `drift.luau` | 指针逻辑，写 `jellyX/Y`、`jellyTilt`、`dartScaleX/Y`、`tentacleSwing/Stretch` |
+| `water.luau` / `water.wgsl` | 水体背景；每帧从 view model 读颜色和光线参数 |
+| `grade.luau` / `grade.wgsl` | 调色层；读 `grain`、`vignette` |
+| `snow.luau` | 海雪、气泡 |
+
+## 可调设置（view model `Scene`）
+
+颜色都是 ARGB，alpha 是设置的一部分：
+
+| 属性 | 含义 | 默认 |
+|---|---|---|
+| `waterTop` / `waterBottom` | 水体上下色 | `FF0A2A48` / `FF02060E` |
+| `lightColor` | 光束、焦散、雾的颜色 | `FFA9DCFF` |
+| `lightIntensity` | 光束亮度 0–1 | `0.65` |
+| `lightAngle` | 光束角度，度 | `-14` |
+| `bellColor` / `bellEdge` | 伞盖中心 / 边缘与口腕 | `8C5FC4DE` / `3A8FE0F2` |
+| `glowColor` | 伞缘、辐管、触手、外发光 | `FF6FE6FF` |
+| `coreColor` | 内脏暖光 | `FFFFB063` |
+| `glowStrength` | 外发光强度 0–1 | `0.75` |
+| `grain` | 颗粒强度 | `0.07` |
+| `vignette` | 暗角强度 | `0.6` |
+
+其余数值由 `drift.luau` 每帧写入，不要手动设。
+
+## 工作流
+
+```bash
+python3 tools/gen_scene.py
+```
+```bash
+rive . --verify
+```
+```bash
+rive inspect . --summary
+```
+```bash
+rive . --screenshot=build/f.png --advance=90
+```
+```bash
+rive .
 ```
 
-在 http://127.0.0.1:5173 查看。网页资产已经包含在仓库内，运行网页无需 Blender。
+试一组暖色：
 
-- 拖动旋转、滚轮缩放；触屏单指旋转、双指缩放与平移。
-- 全貌、传动、翼脉、俯视切换；编号观察点可以靠近对应部位。
-- 结构展开滑块分离四翼、头部、腹节和机械足；恢复到 0% 可重新装配。
-- 暂停冻结机械运转，仍可观察；自动旋转控制展示镜头。
-- 模型画布支持键盘方向键旋转、加减键缩放。尊重系统减少动态效果设置，默认暂停机械运动。
-
-## 资产与验证
-
-```sh
-yarn assets
-yarn verify:assets
-yarn lint
-yarn test
-yarn build
+```bash
+rive . --screenshot=build/warm.png --advance=90 --data=glowColor=FFFFA060 --data=coreColor=FFFFE6B8 --data=waterTop=FF3A1030 --data=lightColor=FFFFC890 --data=bellColor=8CD88A70 --data=lightAngle=16
 ```
 
-`yarn assets` 使用 `/Applications/Blender.app/Contents/MacOS/Blender` 执行 `scripts/blender/build_dragonfly.py`（共用几何函数位于 `scripts/blender/mechanical_geometry.py`），生成 `assets/blender/dragonfly.blend`、`public/assets/dragonfly.glb` 以及资产统计 JSON。重复生成会覆盖这三个产物；手工调整源文件前，请先同步生成脚本。
+## 限制
 
-- 源文件：完全可编辑的分件网格与命名父子层级。
-- 材质：9 种 glTF PBR 材质，细节由几何表达，**没有烘焙颜色、法线、粗糙度或光照贴图**。
-- 渲染：实时工作室光照、GTAO 接触遮蔽与输出色调映射。透明翼膜不参与遮蔽深度写入；没有光照烘焙。
-- 动画：Three.js 驱动刚性对象转轴。没有骨骼蒙皮、气动仿真或工程级机械约束求解。当前是艺术化低速机构展示，GLB 本身不含动画片段。
-- 展开：用于观察结构的分组分离，不是完整生产装配顺序。
-- 字体来自 Google Fonts，网络不可用时使用本地系统字体。模型与渲染环境无需外部下载。
-
-详细完成情况、限制与验证证据见 [项目记录](docs/PROJECT_PLAN.md)。
+- 本地构建的脚本未签名，网页运行时会拒绝；发布到网页要用 `rive . --publish=web`。
+- 着色器在 Metal 上验证过，WebGPU 校验更严格，上线前需在浏览器确认。
+- `.rev` 能在 Rive Editor 打开，但蒙皮权重是生成器算的，编辑器里改完再拉回来要重新对一遍。

@@ -1,0 +1,282 @@
+<Rive version="1" kind="fragment">
+    <!-- TV home: text is markup bound to the Menu view model; menu.luau draws
+         the background print and the 3D cards and handles the keyboard. -->
+    <Artboard defaultStateMachineId="0:7" viewModelId="0:40" viewModelInstanceId="0:41"
+              styleId="0:5" clip="true" width="1280" height="720" name="TV" id="0:2">
+        <LayoutComponentStyle name="Artboard Style" id="0:5"/>
+        <Fill name="Base"><SolidColor colorValue="FF07090C" name="C"/></Fill>
+
+        <!-- top left: clock -->
+        <Text x="60" y="34" name="Clock" id="0:100">
+            <TextStylePaint fontSize="30" fontAssetId="0:91" name="S" id="0:101">
+                <Fill name="F"><SolidColor colorValue="FFF2F4F7" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:101" text="2:27" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:54" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="60" y="74" name="Date" id="0:102">
+            <TextStylePaint fontSize="10" letterSpacing="1.6" fontAssetId="0:92" name="S" id="0:103">
+                <Fill name="F"><SolidColor colorValue="FF9AA3AE" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:103" text="TUESDAY, OCTOBER 20" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:55" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+
+        <!-- top right: status and the print label -->
+        <Text x="1000" y="36" name="Status" id="0:104">
+            <TextStylePaint fontSize="10" letterSpacing="1.6" fontAssetId="0:92" name="S" id="0:105">
+                <Fill name="F"><SolidColor colorValue="FFB8C0CA" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:105" text="SMARTCAST   ·   VOL 44" name="Run"/>
+        </Text>
+        <Shape x="990" y="43" name="StatusDot" id="0:106">
+            <Ellipse width="6" height="6" originX="0.5" originY="0.5" name="P"/>
+            <Fill name="F"><SolidColor colorValue="FF4CE08A" name="C"/></Fill>
+        </Shape>
+        <Text x="1000" y="56" name="PrintLabel" id="0:107">
+            <TextStylePaint fontSize="9" letterSpacing="1.6" fontAssetId="0:92" name="S" id="0:108">
+                <Fill name="F"><SolidColor colorValue="FFB8A070" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:108" text="PRINT   VERMILION   ·   CRIMSON" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:53" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+
+        <!-- hero -->
+        <Text x="60" y="140" name="Counter" id="0:110">
+            <TextStylePaint fontSize="10" letterSpacing="1.8" fontAssetId="0:92" name="S" id="0:111">
+                <Fill name="F"><SolidColor colorValue="FFB8A070" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:111" text="APPS   1 / 10" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:52" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="56" y="152" name="Title" id="0:112">
+            <TextStylePaint fontSize="96" fontAssetId="0:90" name="S" id="0:113">
+                <Fill name="F"><SolidColor colorValue="FFF7F7F5" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:113" text="Netflix" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:50" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="60" y="280" name="Subtitle" id="0:114">
+            <TextStylePaint fontSize="22" fontAssetId="0:91" name="S" id="0:115">
+                <Fill name="F"><SolidColor colorValue="FFD9DEE4" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:115" text="Series and films" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:51" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+        <Text x="60" y="318" name="Press" id="0:116">
+            <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:117">
+                <Fill name="F"><SolidColor colorValue="FF8E97A2" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:117" text="Press OK to open" name="Run"/>
+        </Text>
+
+        <!-- apps row: section label and card labels (cards are drawn by the script) -->
+        <Node name="AppsLabels" id="0:120">
+            <DataBindContext sourcePathIds="0:40-0:78" propertyKey="18"/>
+            <Text x="60" y="372" name="AppsHead" id="0:121">
+                <TextStylePaint fontSize="9" letterSpacing="1.8" fontAssetId="0:92" name="S" id="0:122">
+                    <Fill name="F"><SolidColor colorValue="FF8E97A2" name="C"/></Fill>
+                </TextStylePaint>
+                <TextValueRun styleId="0:122" text="APPS" name="Run"/>
+            </Text>
+            <Text x="150" y="558" originX="0.5" name="L0" id="0:130">
+                <DataBindContext sourcePathIds="0:40-0:64" propertyKey="13"/>
+                <DataBindContext sourcePathIds="0:40-0:71" propertyKey="18"/>
+                <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:131"><Fill name="F"><SolidColor colorValue="FFE8ECF0" name="C"/></Fill></TextStylePaint>
+                <TextValueRun styleId="0:131" text="Netflix" name="Run"><DataBindContext sourcePathIds="0:40-0:57" propertyKey="268"/></TextValueRun>
+            </Text>
+            <Text x="390" y="558" originX="0.5" name="L1" id="0:132">
+                <DataBindContext sourcePathIds="0:40-0:65" propertyKey="13"/>
+                <DataBindContext sourcePathIds="0:40-0:72" propertyKey="18"/>
+                <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:133"><Fill name="F"><SolidColor colorValue="FFE8ECF0" name="C"/></Fill></TextStylePaint>
+                <TextValueRun styleId="0:133" text="YouTube" name="Run"><DataBindContext sourcePathIds="0:40-0:58" propertyKey="268"/></TextValueRun>
+            </Text>
+            <Text x="630" y="558" originX="0.5" name="L2" id="0:134">
+                <DataBindContext sourcePathIds="0:40-0:66" propertyKey="13"/>
+                <DataBindContext sourcePathIds="0:40-0:73" propertyKey="18"/>
+                <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:135"><Fill name="F"><SolidColor colorValue="FFE8ECF0" name="C"/></Fill></TextStylePaint>
+                <TextValueRun styleId="0:135" text="Prime Video" name="Run"><DataBindContext sourcePathIds="0:40-0:59" propertyKey="268"/></TextValueRun>
+            </Text>
+            <Text x="870" y="558" originX="0.5" name="L3" id="0:136">
+                <DataBindContext sourcePathIds="0:40-0:67" propertyKey="13"/>
+                <DataBindContext sourcePathIds="0:40-0:74" propertyKey="18"/>
+                <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:137"><Fill name="F"><SolidColor colorValue="FFE8ECF0" name="C"/></Fill></TextStylePaint>
+                <TextValueRun styleId="0:137" text="Disney+" name="Run"><DataBindContext sourcePathIds="0:40-0:60" propertyKey="268"/></TextValueRun>
+            </Text>
+            <Text x="1110" y="558" originX="0.5" name="L4" id="0:138">
+                <DataBindContext sourcePathIds="0:40-0:68" propertyKey="13"/>
+                <DataBindContext sourcePathIds="0:40-0:75" propertyKey="18"/>
+                <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:139"><Fill name="F"><SolidColor colorValue="FFE8ECF0" name="C"/></Fill></TextStylePaint>
+                <TextValueRun styleId="0:139" text="Hulu" name="Run"><DataBindContext sourcePathIds="0:40-0:61" propertyKey="268"/></TextValueRun>
+            </Text>
+            <Text x="1350" y="558" originX="0.5" name="L5" id="0:140">
+                <DataBindContext sourcePathIds="0:40-0:69" propertyKey="13"/>
+                <DataBindContext sourcePathIds="0:40-0:76" propertyKey="18"/>
+                <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:141"><Fill name="F"><SolidColor colorValue="FFE8ECF0" name="C"/></Fill></TextStylePaint>
+                <TextValueRun styleId="0:141" text="" name="Run"><DataBindContext sourcePathIds="0:40-0:62" propertyKey="268"/></TextValueRun>
+            </Text>
+            <Text x="-90" y="558" originX="0.5" name="L6" id="0:142">
+                <DataBindContext sourcePathIds="0:40-0:70" propertyKey="13"/>
+                <DataBindContext sourcePathIds="0:40-0:77" propertyKey="18"/>
+                <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:143"><Fill name="F"><SolidColor colorValue="FFE8ECF0" name="C"/></Fill></TextStylePaint>
+                <TextValueRun styleId="0:143" text="" name="Run"><DataBindContext sourcePathIds="0:40-0:63" propertyKey="268"/></TextValueRun>
+            </Text>
+        </Node>
+
+        <!-- inputs row -->
+        <Text x="60" y="588" name="InputsHead" id="0:150">
+            <TextStylePaint fontSize="9" letterSpacing="1.8" fontAssetId="0:92" name="S" id="0:151">
+                <Fill name="F"><SolidColor colorValue="FF8E97A2" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:151" text="INPUTS" name="Run"/>
+        </Text>
+        <Text x="74" y="612" name="CastTag" id="0:152">
+            <TextStylePaint fontSize="7" letterSpacing="1.4" fontAssetId="0:92" name="S" id="0:153">
+                <Fill name="F"><SolidColor colorValue="FF6E7781" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:153" text="CAST" name="Run"/>
+        </Text>
+        <Text x="74" y="624" name="In0" id="0:154">
+            <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:155"><Fill name="F"><SolidColor colorValue="FFD4D9DF" name="C"/></Fill></TextStylePaint>
+            <TextValueRun styleId="0:155" text="SMARTCAST" name="Run"/>
+        </Text>
+        <Text x="234" y="622" name="In1" id="0:156">
+            <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:157"><Fill name="F"><SolidColor colorValue="FFB8BEC6" name="C"/></Fill></TextStylePaint>
+            <TextValueRun styleId="0:157" text="HDMI-1" name="Run"/>
+        </Text>
+        <Text x="394" y="622" name="In2" id="0:158">
+            <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:159"><Fill name="F"><SolidColor colorValue="FFB8BEC6" name="C"/></Fill></TextStylePaint>
+            <TextValueRun styleId="0:159" text="HDMI-2" name="Run"/>
+        </Text>
+        <Text x="554" y="622" name="In3" id="0:160">
+            <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:161"><Fill name="F"><SolidColor colorValue="FFB8BEC6" name="C"/></Fill></TextStylePaint>
+            <TextValueRun styleId="0:161" text="COMP" name="Run"/>
+        </Text>
+        <Text x="714" y="622" name="In4" id="0:162">
+            <TextStylePaint fontSize="15" fontAssetId="0:91" name="S" id="0:163"><Fill name="F"><SolidColor colorValue="FFB8BEC6" name="C"/></Fill></TextStylePaint>
+            <TextValueRun styleId="0:163" text="TV" name="Run"/>
+        </Text>
+        <!-- selection pill, behind the labels -->
+        <Shape x="136" y="631" name="Pill" id="0:164">
+            <DataBindContext sourcePathIds="0:40-0:79" propertyKey="13"/>
+            <DataBindContext sourcePathIds="0:40-0:80" propertyKey="18"/>
+            <Rectangle width="150" height="50" originX="0.5" originY="0.5" cornerRadiusTL="8" name="P"/>
+            <Fill name="F"><SolidColor colorValue="22FFFFFF" name="C"/></Fill>
+            <Stroke thickness="1.5" name="Glow"><SolidColor colorValue="FFBFEADB" name="C"/><Feather strength="4" name="Fe"/></Stroke>
+            <Stroke thickness="1" name="S"><SolidColor colorValue="FFDDEEE6" name="C"/></Stroke>
+        </Shape>
+        <Node name="InputBoxes" id="0:166">
+            <Shape x="60" y="606" name="B0" id="0:167"><Rectangle width="150" height="50" originX="0" originY="0" cornerRadiusTL="6" name="P"/><Fill name="F"><SolidColor colorValue="14FFFFFF" name="C"/></Fill><Stroke thickness="1" name="S"><SolidColor colorValue="24FFFFFF" name="C"/></Stroke></Shape>
+            <Shape x="220" y="606" name="B1" id="0:168"><Rectangle width="150" height="50" originX="0" originY="0" cornerRadiusTL="6" name="P"/><Fill name="F"><SolidColor colorValue="14FFFFFF" name="C"/></Fill><Stroke thickness="1" name="S"><SolidColor colorValue="24FFFFFF" name="C"/></Stroke></Shape>
+            <Shape x="380" y="606" name="B2" id="0:169"><Rectangle width="150" height="50" originX="0" originY="0" cornerRadiusTL="6" name="P"/><Fill name="F"><SolidColor colorValue="14FFFFFF" name="C"/></Fill><Stroke thickness="1" name="S"><SolidColor colorValue="24FFFFFF" name="C"/></Stroke></Shape>
+            <Shape x="540" y="606" name="B3" id="0:170"><Rectangle width="150" height="50" originX="0" originY="0" cornerRadiusTL="6" name="P"/><Fill name="F"><SolidColor colorValue="14FFFFFF" name="C"/></Fill><Stroke thickness="1" name="S"><SolidColor colorValue="24FFFFFF" name="C"/></Stroke></Shape>
+            <Shape x="700" y="606" name="B4" id="0:171"><Rectangle width="150" height="50" originX="0" originY="0" cornerRadiusTL="6" name="P"/><Fill name="F"><SolidColor colorValue="14FFFFFF" name="C"/></Fill><Stroke thickness="1" name="S"><SolidColor colorValue="24FFFFFF" name="C"/></Stroke></Shape>
+        </Node>
+
+        <!-- footer -->
+        <Text x="60" y="688" name="Hint" id="0:180">
+            <TextStylePaint fontSize="9" letterSpacing="1.6" fontAssetId="0:92" name="S" id="0:181">
+                <Fill name="F"><SolidColor colorValue="FF6E7781" name="C"/></Fill>
+            </TextStylePaint>
+            <TextValueRun styleId="0:181" text="ARROWS MOVE   ·   OK OPENS   ·   BACK GOES UP" name="Run">
+                <DataBindContext sourcePathIds="0:40-0:56" propertyKey="268"/>
+            </TextValueRun>
+        </Text>
+
+        <!-- the scene: background print + 3D cards, and the keyboard focus -->
+        <LayoutComponent width="1280" height="720" styleId="0:11" name="Scene" id="0:10">
+            <LayoutComponentStyle positionTypeValue="absolute"
+                positionLeft="0" positionLeftUnitsValue="points" positionTop="0" positionTopUnitsValue="points"
+                positionRight="0" positionRightUnitsValue="points" positionBottom="0" positionBottomUnitsValue="points"
+                name="Style" id="0:11"/>
+            <ScriptedLayout scriptAssetId="0:85" name="Menu" id="0:12">
+                <FocusData/>
+            </ScriptedLayout>
+        </LayoutComponent>
+
+        <StateMachine name="Main" id="0:7">
+            <StateMachineLayer name="L" id="0:8">
+                <AnyState x="400" y="0"/><ExitState x="520" y="0"/>
+                <EntryState x="0" y="0"/>
+            </StateMachineLayer>
+        </StateMachine>
+    </Artboard>
+
+    <ViewModel defaultInstanceId="0:41" name="Menu" id="0:40">
+        <ViewModelPropertyString name="title" id="0:50"/>
+        <ViewModelPropertyString name="subtitle" id="0:51"/>
+        <ViewModelPropertyString name="counter" id="0:52"/>
+        <ViewModelPropertyString name="printLabel" id="0:53"/>
+        <ViewModelPropertyString name="clock" id="0:54"/>
+        <ViewModelPropertyString name="date" id="0:55"/>
+        <ViewModelPropertyString name="hint" id="0:56"/>
+        <ViewModelPropertyString name="label0" id="0:57"/>
+        <ViewModelPropertyString name="label1" id="0:58"/>
+        <ViewModelPropertyString name="label2" id="0:59"/>
+        <ViewModelPropertyString name="label3" id="0:60"/>
+        <ViewModelPropertyString name="label4" id="0:61"/>
+        <ViewModelPropertyString name="label5" id="0:62"/>
+        <ViewModelPropertyString name="label6" id="0:63"/>
+        <ViewModelPropertyNumber name="labelX0" id="0:64"/>
+        <ViewModelPropertyNumber name="labelX1" id="0:65"/>
+        <ViewModelPropertyNumber name="labelX2" id="0:66"/>
+        <ViewModelPropertyNumber name="labelX3" id="0:67"/>
+        <ViewModelPropertyNumber name="labelX4" id="0:68"/>
+        <ViewModelPropertyNumber name="labelX5" id="0:69"/>
+        <ViewModelPropertyNumber name="labelX6" id="0:70"/>
+        <ViewModelPropertyNumber name="labelA0" id="0:71"/>
+        <ViewModelPropertyNumber name="labelA1" id="0:72"/>
+        <ViewModelPropertyNumber name="labelA2" id="0:73"/>
+        <ViewModelPropertyNumber name="labelA3" id="0:74"/>
+        <ViewModelPropertyNumber name="labelA4" id="0:75"/>
+        <ViewModelPropertyNumber name="labelA5" id="0:76"/>
+        <ViewModelPropertyNumber name="labelA6" id="0:77"/>
+        <ViewModelPropertyNumber name="appsA" id="0:78"/>
+        <ViewModelPropertyNumber name="pillX" id="0:79"/>
+        <ViewModelPropertyNumber name="pillA" id="0:80"/>
+        <ViewModelInstance exports="true" name="Default" id="0:41">
+            <ViewModelInstanceString propertyValue="Netflix" viewModelPropertyId="0:50"/>
+            <ViewModelInstanceString propertyValue="Series and films" viewModelPropertyId="0:51"/>
+            <ViewModelInstanceString propertyValue="APPS   1 / 10" viewModelPropertyId="0:52"/>
+            <ViewModelInstanceString propertyValue="PRINT   VERMILION   ·   CRIMSON" viewModelPropertyId="0:53"/>
+            <ViewModelInstanceString propertyValue="2:27" viewModelPropertyId="0:54"/>
+            <ViewModelInstanceString propertyValue="TUESDAY, OCTOBER 20" viewModelPropertyId="0:55"/>
+            <ViewModelInstanceString propertyValue="ARROWS MOVE   ·   OK OPENS   ·   BACK GOES UP" viewModelPropertyId="0:56"/>
+            <ViewModelInstanceString propertyValue="Netflix" viewModelPropertyId="0:57"/>
+            <ViewModelInstanceString propertyValue="YouTube" viewModelPropertyId="0:58"/>
+            <ViewModelInstanceString propertyValue="Prime Video" viewModelPropertyId="0:59"/>
+            <ViewModelInstanceString propertyValue="Disney+" viewModelPropertyId="0:60"/>
+            <ViewModelInstanceString propertyValue="Hulu" viewModelPropertyId="0:61"/>
+            <ViewModelInstanceString propertyValue="" viewModelPropertyId="0:62"/>
+            <ViewModelInstanceString propertyValue="" viewModelPropertyId="0:63"/>
+            <ViewModelInstanceNumber propertyValue="150" viewModelPropertyId="0:64"/>
+            <ViewModelInstanceNumber propertyValue="390" viewModelPropertyId="0:65"/>
+            <ViewModelInstanceNumber propertyValue="630" viewModelPropertyId="0:66"/>
+            <ViewModelInstanceNumber propertyValue="870" viewModelPropertyId="0:67"/>
+            <ViewModelInstanceNumber propertyValue="1110" viewModelPropertyId="0:68"/>
+            <ViewModelInstanceNumber propertyValue="1350" viewModelPropertyId="0:69"/>
+            <ViewModelInstanceNumber propertyValue="-90" viewModelPropertyId="0:70"/>
+            <ViewModelInstanceNumber propertyValue="1" viewModelPropertyId="0:71"/>
+            <ViewModelInstanceNumber propertyValue="0.4" viewModelPropertyId="0:72"/>
+            <ViewModelInstanceNumber propertyValue="0.4" viewModelPropertyId="0:73"/>
+            <ViewModelInstanceNumber propertyValue="0.4" viewModelPropertyId="0:74"/>
+            <ViewModelInstanceNumber propertyValue="0.4" viewModelPropertyId="0:75"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:76"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:77"/>
+            <ViewModelInstanceNumber propertyValue="1" viewModelPropertyId="0:78"/>
+            <ViewModelInstanceNumber propertyValue="136" viewModelPropertyId="0:79"/>
+            <ViewModelInstanceNumber propertyValue="0" viewModelPropertyId="0:80"/>
+        </ViewModelInstance>
+    </ViewModel>
+
+    <ScriptAsset file="menu.luau" name="menu" id="0:85"/>
+    <FontAsset file="Lora.ttf" name="Lora" id="0:90"/>
+    <FontAsset file="Inter.ttf" name="Inter" id="0:91"/>
+    <FontAsset file="JetBrainsMono.ttf" name="Mono" id="0:92"/>
+</Rive>
